@@ -41,6 +41,30 @@
                     <div class="d-flex justify-content-center align-content-start flex-wrap" id="card-container"></div>
                 </div>
             </div>
+            <!-- Modal Movie Details -->
+            <div class="modal fade" id="modal-movie-details" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row">
+                    <div class="col-12 col-sm-3 mb-3">
+                        <img class="w-100" id="modal-image">
+                    </div>
+                    <div class="col-12 col-sm-9">
+                        <h5 class="fw-bold">Sinopsis</h5>
+                        <p id="modal-description"></p>
+                        <p>Rating : <span id="modal-rating"></span></p>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>  
         </main>
         <footer>
             <div class="bg-dark d-flex justify-content-center py-5">

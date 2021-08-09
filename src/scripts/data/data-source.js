@@ -1,11 +1,24 @@
 const axios = require('axios');
 
+class Movie {
+    constructor(title, overview, vote_average, poster_path){
+        this.title = title;
+        this.description = overview;
+        this.rating = vote_average;
+        this.poster = `https://image.tmdb.org/t/p/original/${poster_path}`;
+    }
+}
+
 class DataSource {
     static searchMovieByKeyword(keyword = '', page = 1){
         return new Promise((resolve, reject) => {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=59dad850c5d1fe1c602e5906b245fe7a&query=${keyword}&page=${page}`)
             .then(response => {
-                resolve(response);
+                let movies = [];
+                response.data.results.forEach(movie => {
+                    movies.push(new Movie(movie.title, movie.overview, movie.vote_average, movie.poster_path));
+                });
+                resolve(movies);
             }).catch(err => {
                 reject(err);
             });
@@ -16,7 +29,11 @@ class DataSource {
         return new Promise((resolve, reject) => {
             axios.get(`https://api.themoviedb.org/3/movie/${movie_type}?api_key=59dad850c5d1fe1c602e5906b245fe7a&page=${page}`)
             .then(response => {
-                resolve(response);
+                let movies = [];
+                response.data.results.forEach(movie => {
+                    movies.push(new Movie(movie.title, movie.overview, movie.vote_average, movie.poster_path));
+                });
+                resolve(movies);
             }).catch(err => {
                 reject(err);
             });
