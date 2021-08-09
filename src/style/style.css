@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url('../fonts/Nunito-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Nunito', 'Segoe UI', sans-serif;
+}
+
+main {
+    padding-top: 4.8rem;
+}
+
+@media only screen and (max-width: 576px) {
+    .card-container .card {
+        width: 45%!important;
+    }
+
+    .card-container .card img {
+        height: 18rem!important;
+    }
+
+    .navbar {
+        background-color: white;
+    }
+}
+
+@media only screen and (max-width: 344px) {
+    .card-container .card {
+        width: 100%!important;
+    }
+}
