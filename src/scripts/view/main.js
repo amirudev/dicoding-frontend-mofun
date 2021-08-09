@@ -1,16 +1,41 @@
 import DataSource from "../data/data-source";
 
 const main = () => {
-    console.log('Main file loaded');
-
     // Completing Functionality
     let movieSearchButton = document.getElementById('movie-search-button');
     let movieSearchInput = document.getElementById('movie-search-input');
     
-    movieSearchButton.addEventListener('click', async () => {
-        let movies = await DataSource.searchMovie(movieSearchInput);
-        renderItemContainer(movies);
+    movieSearchButton.addEventListener('click', () => {
+        loadDataFromServer('keyword', movieSearchInput.value);
     });
+
+    const loadDataFromServer = async (source, value) => {
+        let movies = [];
+
+        switch(source){
+            case 'keyword':
+                movies = await getDataFromServerByKeywords(value);
+                break;
+            case 'movie_type':
+                movies = await getDataFromServerByMovieType(value);
+                break;
+            default:
+                movies = await getDataFromServerByMovieType(value);
+                break;
+        }
+
+        renderItemContainer(movies);
+    }
+    
+    const getDataFromServerByKeywords = async (keyword) => {
+        let movies = await DataSource.searchMovieByKeyword(encodeURI(keyword));
+        return movies;
+    }
+
+    const getDataFromServerByMovieType = async (movie_type) => {
+        let movies = await DataSource.searchMovieByType(movie_type);
+        return movies;
+    }
 
     const renderItemContainer = (movies) => {
         console.log(movies);
@@ -24,7 +49,7 @@ const main = () => {
         movies.data.results.forEach(movie => {
             let divElement = document.createElement('div');
             let cardItemElement = `
-            <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" class="rounded" alt="${movie.title}" style="height: 22rem; object-fit: cover;">
+            <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" class="rounded" alt="${movie.title}" style="height: 22rem; width: 14.5rem; object-fit: cover;">
             <div class="card-body w-100 position-absolute bottom-0 pt-5" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0,0,0,0));">
                 <h5 class="card-title text-white">${movie.title}</h5>
                 <span class="d-none" id="movie-description">${movie.description}</span>
@@ -40,6 +65,27 @@ const main = () => {
             cardContainer.appendChild(divElement);
         });
     }
+
+    const resetAllButtonColor = () => {
+        document.querySelectorAll('.movie-type-changer-button').forEach(movie_button => {
+            movie_button.classList.remove('text-white');
+        });
+    }
+    
+    document.querySelectorAll('.movie-type-changer-button').forEach(movie_button => {
+        movie_button.addEventListener('click', () => {
+            resetAllButtonColor();
+            movie_button.classList.add('text-white');
+            loadDataFromServer('movie_type', movie_button.value);
+            movieSearchInput.value = '';
+        });
+    });
+    
+    window.onload = () => {
+        loadDataFromServer('movie_type', 'popular');
+    }
+
+    // Bootstrap popover to show descriptions
     
     // Axios AJAX
     // Custom elements
