@@ -30,19 +30,20 @@
             <div>
                 <div class="container my-3">
                     <div class="input-group mb-4">
-                        <input class="form-control bg-transparent rounded-pill border-secondary py-2" placeholder="Ketik teks atau judul disini" aria-describedby="movie-search">
-                        <button class="btn btn-outline-secondary rounded-pill position-absolute end-0 py-2 px-5 bg-primary text-white" type="button" id="movie-search" style="z-index: 10;">Mulai Cari</button>
+                        <input class="form-control bg-transparent rounded-pill border-secondary py-2 text-white" placeholder="Ketik teks atau judul disini" aria-describedby="movie-search" id="movie-search-input">
+                        <button class="btn btn-outline-secondary rounded-pill position-absolute end-0 py-2 px-5 bg-primary text-white" type="button" id="movie-search-button" style="z-index: 10;">Mulai Cari</button>
                     </div>
                     <div class="mb-4">
                         <button class="movie-type-changer-button fw-bold bg-transparent border-0 me-2 text-secondary text-white" id="popular-movietype-button" value="popular">Popular Movies</button>
                         <button class="movie-type-changer-button fw-bold bg-transparent border-0 me-2 text-secondary" id="top_rated-movietype-button" value="top_rated">Top Rated Movies</button>
                         <button class="movie-type-changer-button fw-bold bg-transparent border-0 me-2 text-secondary" id="upcoming-movietype-button" value="upcoming">Upcoming Movies</button>
                     </div>
-                    <div class="card-container d-flex justify-content-center align-content-start flex-wrap">
-                        <div class="card border-0 mb-3 me-3">
+                    <div class="d-flex justify-content-center align-content-start flex-wrap" id="card-container">
+                        <div class="card-item card border-0 mb-3 me-3">
                             <img src="https://i.stack.imgur.com/IpJ7Y.jpg" class="rounded" alt="..." style="height: 22rem; object-fit: cover;">
                             <div class="card-body w-100 position-absolute bottom-0 pt-5" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0,0,0,0));">
                                 <h5 class="card-title text-white">Card title</h5>
+                                <span class="d-none" id="movie-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia sapiente maxime deleniti eligendi tempore possimus voluptas. Sunt incidunt fugit praesentium laboriosam vitae. Nihil id magnam ipsa nobis deleniti veritatis possimus!</span>
                             </div>
                             <span class="badge bg-warning text-dark position-absolute top-0 fs-6 d-flex align-middle" style="top: 1rem!important; right: 1rem!important;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill me-1" viewBox="0 0 16 16">
