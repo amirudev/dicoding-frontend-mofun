@@ -1,12 +1,14 @@
-const htmlWebpackPlugin = require('html-webpack-plugin')
-const copyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    app: './src/app.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -28,11 +30,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html'
     }),
-    new copyWebpackPlugin({
+    new CopyWebpackPlugin({
       patterns: [
         {
           from: './src/images/',

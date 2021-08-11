@@ -19,8 +19,8 @@ class MovieItem extends HTMLElement {
     divMovieItem.innerHTML = `
         <style>
             .card {
-                position: relative;
                 margin: 0 1rem 1rem 0;
+                position: relative;
             }
 
             img {
@@ -39,6 +39,7 @@ class MovieItem extends HTMLElement {
                 color: white;
                 font-family: Nunito, 'Segoe UI', sans-serif;
                 font-size: 1.20rem;
+                padding-top: 3rem;
             }
 
             .card-body .card-title {

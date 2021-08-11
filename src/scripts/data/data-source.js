@@ -5,7 +5,7 @@ class Movie {
     this.title = title
     this.description = overview
     this.rating = voteAverage
-    this.poster = 'https://image.tmdb.org/t/p/original/kb4s0ML0iVZlG6wAKbbs9NAm6X.jpg'
+    this.poster = `https://image.tmdb.org/t/p/original${posterPath}`
   }
 }
 
@@ -25,9 +25,9 @@ class DataSource {
     })
   }
 
-  static searchMovieByType (movie_type = 'popular', page = 1) {
+  static searchMovieByType (movieType = 'popular', page = 1) {
     return new Promise((resolve, reject) => {
-      axios.get(`https://api.themoviedb.org/3/movie/${movie_type}?api_key=59dad850c5d1fe1c602e5906b245fe7a&page=${page}`)
+      axios.get(`https://api.themoviedb.org/3/movie/${movieType}?api_key=59dad850c5d1fe1c602e5906b245fe7a&page=${page}`)
         .then(response => {
           const movies = []
           response.data.results.forEach(movie => {
